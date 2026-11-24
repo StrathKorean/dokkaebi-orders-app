@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.dokkaebi.orders'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.dokkaebi.orders'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+
+    // 고정 서명 키: 다시 빌드해도 기존 앱 위에 그대로 업데이트 설치됩니다.
+    signingConfigs {
+        debug {
+            storeFile file('dokkaebi-debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
